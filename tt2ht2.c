@@ -23,38 +23,24 @@ main()
 	strcpy(td1, "<td>");
 	strcpy(td2, "</td>");
 
+	char noprocess[12];
+	int i = 0;
 //	puts(table1);
 
+	/*
 	while((c=getchar()) != EOF)
 	{
-		if (current_state == 0)
-		{
-			puts(tr1);
-			puts(td1);
-			putchar(c);
-			current_state = 2;
-		} else if ( current_state == 1 ) {
-			puts(td1);
-			putchar(c);
-			current_state = 2;
-		} else if (current_state == 2)
+		noprocess[i++] = c;
+		if (strcmp(noprocess, "<noprocess>") != 0)
 		{
 			putchar(c);
-			if ( isspace(c) )
-			{
-				if ( c == '\n')
-				{
-					puts(td2);
-					puts(tr2);
-					current_state = 0;
-				} else
-				{
-					puts(td2);
-					current_state = 1;
-				}
-			}
 		}
-	}
-	
+	}*/
+
+	while ( (c=getchar()) != EOF )
+	{
+		putchar(c);
+	}	
+
 //	puts(table2);
 }
