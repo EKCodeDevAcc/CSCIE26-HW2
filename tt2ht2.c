@@ -23,7 +23,7 @@ main()
 	strcpy(td1, "<td>");
 	strcpy(td2, "</td>");
 
-	puts(table1);
+//	puts(table1);
 
 	while((c=getchar()) != EOF)
 	{
@@ -56,5 +56,5 @@ main()
 		}
 	}
 	
-	puts(table2);
+//	puts(table2);
 }
