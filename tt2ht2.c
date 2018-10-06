@@ -37,8 +37,6 @@ main()
 		i++;
 		basic_array[i+1] = '\0';
 
-		//puts(basic_array);
-
 		if ( strcmp(basic_array, "<noprocess>" ) == 0 )
 		{
 			current_state = 1;
@@ -46,18 +44,15 @@ main()
 		{
 			current_state = 0;
 		}
-
+		
+		
 		if ( c == '\n')
 		{
 			puts(basic_array);
+			memset(basic_array, ' ', i);
 		}
-
+				
 		/*
-		if (current_state == 1)
-		{
-			puts(basic_array);
-		}		
-		
 		if (current_state == 0)
 		{
 			if ( c == '\n')
