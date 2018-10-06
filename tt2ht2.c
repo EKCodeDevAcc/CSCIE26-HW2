@@ -23,24 +23,34 @@ main()
 	strcpy(td1, "<td>");
 	strcpy(td2, "</td>");
 
+	char testtest[10];
+	strcpy(testtest, "<p>test</p>");
+
+	char basic_array[12];
 	char noprocess[12];
 	int i = 0;
-//	puts(table1);
-
-	/*
-	while((c=getchar()) != EOF)
-	{
-		noprocess[i++] = c;
-		if (strcmp(noprocess, "<noprocess>") != 0)
-		{
-			putchar(c);
-		}
-	}*/
 
 	while ( (c=getchar()) != EOF )
 	{
-		putchar(c);
-	}	
+		putchar('a');
+		basic_array[i++] = c;
+		basic_array[11] = '\0';
+		if (strcmp(basic_array, "<noprocess>") == 0)
+		{
+			//strcpy(noprocess, basic_array);
+			current_state = 1;
+		} else if (strcmp(basic_array, "</noprocess>") == 0)
+		{
+			//strcpy(noprocess, basic_array);
+			current_state = 0;
+		}
 
-//	puts(table2);
+		if (current_state == 0)
+		{
+			putchar(c);
+		} else
+		{
+			puts(basic_array);
+		}
+	}
 }
