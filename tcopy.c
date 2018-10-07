@@ -28,36 +28,25 @@ main()
 
 	int c;
 	int current_state = 0;
-	char basic_array[100];
+	char basic_array[12];
 	int i = 0;
 	
-	while( fgets(basic_array, 100, stdin ) )
+	while( (c=getchar()) != EOF )
 	{
-		basic_array[ strlen(basic_array) - 1 ] = '\0';
-		//puts(basic_array);		
-	
-		if ( strcmp(basic_array, "<noprocess>") == 0 )
+		basic_array[i] = c;
+		i++;
+		basic_array[i] = '\0';
+
+		if ( strcmp(basic_array, "<noprocess>" ) == 0 )
 		{
 			current_state = 1;
-		} else if ( strcmp(basic_array, "</noprocess>") == 0 )
+		} else if ( strcmp(basic_array, "</noprocess>" ) == 0 )
 		{
 			current_state = 0;
-		} else if ( strcmp(basic_array, "<attributes>") == 0 )
-		{
-			current_state = 2;
-		} else if ( strcmp(basic_array, "</attributes>") == 0 )
-		{
-			current_state = 3;
+		} else {
+			printLine(c, basic_array, i);
 		}
-		
-		if ( current_state == 1)
-		{
-			puts(basic_array);
-		} else if ( current_state == 3)
-		{
-			puts(basic_array);
-		}
-	}
+	}	
 }
 
 int
