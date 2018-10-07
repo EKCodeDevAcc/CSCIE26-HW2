@@ -14,6 +14,8 @@
  * 	unless otherwise specifued the program is in process data mode
  *	that is the default and where it starts
  *
+ *	code heavily edited and organzed by bmolay.  Original code
+ *	written by ed kang
  */
 
 
@@ -27,19 +29,15 @@
 #define	PRINT_DATA	2
 
 #define	LINELEN		500
-#define ATTRINUM	50
-#define ATTRILEN	200
 
 #define	TR1		"<tr>"
 #define	TR2		"</tr>"
-#define	TD1		"<td "
-#define TD2		">"
-#define	TD3		"</td>"
+#define	TD1		"<td>"
+#define	TD2		"</td>"
 
 void	process_input();
 int	print_line(char [], int );
 void	convert_row(char[]);
-//void	get_attribute(char[]);
 
 int
 main()
@@ -94,20 +92,12 @@ void process_input()
  */
 int print_line(char basic_array[], int current_state)
 {
-	int i = 0;
-	char attribute_array[ATTRINUM][ATTRILEN];
-
 	if ( current_state == NOPROCESS_PRINT )
 	{
 		puts(basic_array);
 	} else if ( current_state == CONVERT_ROW)
 	{	
-		//convert_row(basic_array, attribute_array);
 		convert_row(basic_array);
-	} else if ( current_state == ATTRIBUTES )
-	{
-		strcpy(attribute_array[i], basic_array);
-		puts(attribute_array[i]);
 	}
 	return 0;
 }
@@ -122,10 +112,6 @@ void convert_row(char basic_array[])
 {
 	int	line_state = START_LINE;
 	int	j;
-	int	td_count = 0;
-	
-	//puts(attribute_array[0]);
-	//puts(attribute_array[2]);
 
 	for ( j=0; j<strlen(basic_array) ; j++)
 	{
@@ -133,19 +119,13 @@ void convert_row(char basic_array[])
 		{
 			puts(TR1);
 			puts(TD1);
-			//puts(attribute_array[td_count]);
-			puts(TD2);
 			putchar(basic_array[j]);
 			line_state = PRINT_DATA;								
-			//td_count++;
 		} else if (line_state == START_COL)
 		{
 			puts(TD1);
-			//puts(attribute_array[td_count]);
-			puts(TD2);
 			putchar(basic_array[j]);
 			line_state = PRINT_DATA;
-			//td_count++;
 		} else if (line_state == PRINT_DATA)
 		{
 			putchar(basic_array[j]);
@@ -153,13 +133,13 @@ void convert_row(char basic_array[])
 			{
 				if ( basic_array[j] == '\n')
 				{
-					puts(TD3);
+					puts(TD2);
 					puts(TR2);
 					line_state = START_LINE;
 
 				} else
 				{
-					puts(TD3);
+					puts(TD2);
 					line_state = START_COL;
 				}
 			}
