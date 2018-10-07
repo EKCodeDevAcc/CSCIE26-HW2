@@ -38,7 +38,7 @@
 
 void	process_input();
 int	print_line(char [], int );
-void	convert_row(char[]);
+void	convert_row(char[], char*);
 //void	get_attribute(char[]);
 
 int
@@ -100,14 +100,14 @@ int print_line(char basic_array[], int current_state)
 	if ( current_state == NOPROCESS_PRINT )
 	{
 		puts(basic_array);
-	} else if ( current_state == CONVERT_ROW)
+	} else if ( current_state == CONVERT_ROW )
 	{	
-		//convert_row(basic_array, attribute_array);
-		convert_row(basic_array);
+		convert_row(basic_array, &attribute_array);
+		//convert_row(basic_array);
 	} else if ( current_state == ATTRIBUTES )
 	{
 		strcpy(attribute_array[i], basic_array);
-		puts(attribute_array[i]);
+		//puts(attribute_array[i]);
 	}
 	return 0;
 }
@@ -118,7 +118,7 @@ int print_line(char basic_array[], int current_state)
  *	rets: nothing
  *	does: looks for spaces and inserts <td> <tr> etc
  */
-void convert_row(char basic_array[])
+void convert_row(char basic_array[], char *atribute_array)
 {
 	int	line_state = START_LINE;
 	int	j;
